@@ -1,102 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV</title>
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
-
-</head>
-<body>
-    <div class="main flex">
-        <div class="box-left">
-            <div class="item-l-1 flex-jtf">
-                <div class="box-img">
-                    <img src="https://scontent.fhan19-1.fna.fbcdn.net/v/t39.30808-6/436130264_1451301912405741_1063487971927929256_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGHVwwVieFSo9Juwa7rVP1_3am9bZun4Frdqb1tm6fgWjYw8eGnj7_M388c9LUsJagnFYkiMU8VsTUWuxs135_F&_nc_ohc=IlKhGDWcaPkAb4UyTtP&_nc_oc=Adi8ojreGbjrlpxKhGgHV2kq2uafKT5uLPVUOtz4O2jxU6ars0txGYcqIWG8fisUcYw&_nc_ht=scontent.fhan19-1.fna&cb_e2o_trans=q&oh=00_AfC9HbIMBXSHdIHo71Fp_oFaSphrycIWZEIz0U-3uHM22g&oe=66254612" alt="">
-                </div>
-            </div>
-            <div class="item-l-2 mt20 mlr20">
-                <div class="item-l-2-title">
-                    <h2>LIÊN LẠC</h1>
-                </div>
-                <div class="item-l-2-content flex mt20">
-                    <div class="box-icon"><i class="fa-solid fa-phone"></i></div>
-                    <div class="content-l-2">0378208856</div>
-                </div>
-                <div class="item-l-2-content flex mt15">
-                    <div class="box-icon"><i class="fa-solid fa-envelope"></i></div>
-                    <div class="content-l-2">vuloc1810@gmail.com</div>
-                </div>
-                <div class="item-l-2-content flex mt15">
-                    <div class="box-icon"><i class="fa-solid fa-cake-candles"></i></div>
-                    <div class="content-l-2">18/10/2005</div>
-                </div>
-                <div class="item-l-2-content flex mt15">
-                    <div class="box-icon"><i class="fa-solid fa-location-dot"></i></div>
-                    <div class="content-l-2">Hà Nội</div>
-                </div>
-            </div>
-            <div class="item-l-2 mt20 mlr20 mt30">
-                <div class="item-l-2-title">
-                    <h2>HỌC VẤN</h1>
-                </div>
-                <div class="education">
-                    <div class="edu1">
-                        <span class="time-mda">2020-2023</span>
-                        <span class="mda">THPT MỸ ĐỨC A</span>
-                    </div>
-                    <div class="edu1">
-                        <span class="time-mda">2023-Now</span>
-                        <span class="mda">HỌC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG</span>
-                    </div>
-                </div>
-            </div>
-            
+<html>
+    <head>
+        <title>Đồng hồ đếm ngược </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>
+            span{border: solid 1px #ACACAC; padding: 2px;}
+        </style>
+        <script language="javascript">
+ 
+            var m = null; // Phút
+            var s = null; // Giây
+            var timeout = null; // Timeout
+            function start() {
+                if (m === null){
+                    // h = parseInt(document.getElementById('h_val').value);
+                    m = parseInt(document.getElementById('m_val').value);
+                    s = parseInt(document.getElementById('s_val').value);
+                }
+                if (s === -1){
+                    m -= 1;
+                    s = 59;
+                }
+                if (m === -1){
+                    clearTimeout(timeout);
+                    // alert('Hết giờ');
+                    document.getElementById('audio').play()
+                    return false;
+                }
+                document.getElementById('m').innerText = m.toString();
+                document.getElementById('s').innerText = s.toString();
+                timeout = setTimeout(function(){
+                    s--;
+                    start();
+                }, 1000);
+            }
+             
+            function reset(){
+                clearTimeout(timeout);
+                document.getElementById('m_val').value =""
+                document.getElementById('s_val').value =""
+                document.getElementById('m').innerText ="Phút"
+                document.getElementById('s').innerText = "Giây"
+                
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            <strong>
+                Nhập thông tin ban đầu: <br/>
+            </strong>
+            <!-- <input type="text" id="h_val" placeholder="Giờ" value=""/> <br/> -->
+            <input type="text" id="m_val" placeholder="Phút" value=""/> <br/>
+            <input type="text" id="s_val" placeholder="Giây" value=""/>
+            <input type="button" value="Start" onclick="start()"/>
+            <input type="button" value="Reset" onclick="reset()"/>  <br/> <br/>
+            <audio id="audio" src="./audio.mp3"></audio>
         </div>
-        <div class="box-right">
-            <div class="item-r-1">
-                <div class="name">
-                    <h1>VŨ TIẾN LỘC</h1>
-                </div>
-                <div class="career">
-                    <span>Front-end Developer</span>
-                </div>
-            </div>
-            <div class="item-r-2">
-                <div class="item-r-2-title cl-333 mt20">
-                    <h2>MỤC TIÊU NGHỀ NGHIỆP</h1>
-                </div>
-                <div class="item-r-2-content">
-                    <span>Em là sinh viên đang theo học chuyên ngành Công nghệ thông tin và đã đạt được chứng chỉ CCNA. Với những kiến thức chuyên môn đã được học, em mong muốn tìm được công việc phù hợp đó là vị trí nhân viên lập trình để có thể vận dụng và phát huy tốt khả năng của mình. Những kinh nghiệm làm việc thực tế mà em tích lũy được sẽ là cơ sở để em đạt được mục tiêu trở thành một chuyên gia công nghệ thông tin giỏi trong 5 năm tới</span>
-                </div>
-            </div>
-            <div class="item-r-2">
-                <div class="item-r-2-title cl-333 mt20">
-                    <h2>KỸ NĂNG</h1>
-                </div>
-                <div class="item-r-2-content">
-                    <span class="mt5">Kỹ năng teamwork, thuyết trình.</span>
-                    <span class="mt5">Kỹ năng quản lý thời gian và chịu được áp lực công việc.</span>
-                    <span class="mt5">Kỹ năng giao tiếp, học hỏi và tiếp thu.</span>
-                    <span class="mt5">Kỹ năng xử lý sự cố.</span>
-                </div>
-            </div>
-            <div class="item-r-2">
-                <div class="item-r-2-title cl-333 mt20">
-                    <h2>KHÁC</h1>
-                </div>
-                <div class="item-r-2-content">
-                    <span class="mt5">
-                        <a href="https://github.com/locxx123/">https://github.com/locxx123</a>
-                    </span>
-                    <span class="mt5">
-                        <a href="https://www.facebook.com/vuloc123/">https://www.facebook.com/vuloc123/</a>
-                    </span>
-                </div>
-            </div>
+         
+        <div>
+            <!-- <span id="h">Giờ</span> : -->
+            <span id="m">Phút</span> :
+            <span id="s">Giây</span>
         </div>
-    </div>
-</body>
+    </body>
 </html>
